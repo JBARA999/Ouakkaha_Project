@@ -1,23 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home";
+import Acceuil from "./pages/Acceuil";
 import Ouakkaha from "./pages/Ouakkaha";
-import Contact from "./pages/Contact";
 import Alfissen from "./pages/Alfissen";
+import Contact from "./pages/Contact";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+
+
 
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ouakkaha" element={<Ouakkaha />} />
+        <Route path="/" element={<Acceuil/>} />
+        <Route path="/ouakkaha" element={<Ouakkaha/>} />
         <Route path="/alaf-issen" element={<Alfissen />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<Contact/>} />
       </Routes>
-      <Footer />
+    <Footer/>
     </>
   );
 }

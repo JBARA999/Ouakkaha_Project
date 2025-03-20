@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Header.css";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -10,10 +11,10 @@ export default function Header() {
         </div>
 
         <div className="lienks">
-          <a href="">Acceuil</a>
-          <a href="">Ouakkaha Mohammed</a>
-          <a href="">Alaf Isenn</a>
-          <a href="">Contact</a>
+          <NavLink to="/">Acceuil</NavLink>
+          <NavLink to="/ouakkaha">Ouakkaha Mohammed</NavLink>
+          <NavLink to="/alaf-issen">Alaf Isenn</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </div>
       </nav>
     </header>
