@@ -1,0 +1,121 @@
+/* Footer Styles */
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #f55B09; /* Orange background */
+    color: white; /* White text */
+    padding: 4rem 2rem;
+    font-family: Arial, sans-serif;
+    gap: 2rem;
+}
+  
+footer > div {
+    flex: 1;
+    min-width: 250px;
+}
+  
+/* Title Styling */
+footer > div > span:first-child,
+.address > span:first-child,
+.suiver > span {
+    display: block;
+    font-size: 1.5rem; /* Slightly bigger */
+    font-weight: 800; /* Bold */
+    margin-bottom: 1.5rem;
+    color: white; /* White for visibility */
+    letter-spacing: 1px;
+    padding-bottom: 0.75rem;
+    position: relative;
+    text-align: center;
+}
+  
+/* Underline Effect */
+footer > div > span:first-child::after,
+.address > span:first-child::after,
+.suiver > span::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    height: 3px;
+    width: 80%;
+    border-bottom: 2px solid white;
+}
+  
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+  
+footer li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+  
+footer li svg {
+    min-width: 20px;
+    height: 20px;
+    color: white; /* White for icons */
+}
+  
+footer li span {
+    color: white; /* White text */
+}
+  
+.social-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+/* Social Media */
+.social-media svg {
+    width: 24px;
+    height: 24px;
+    color: white; /* White for icons */
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+  
+.social-media svg:hover {
+    color: #4E342E; /* Dark brown hover */
+    transform: scale(1.1);
+}
+  
+/* Address Section */
+.address p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: white; /* White text */
+}
+  
+/* Copyright */
+footer > p {
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid white;
+    font-size: 0.875rem;
+    color: white;
+}
+  
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        padding: 3rem 1.5rem;
+    }
+    
+    footer > div {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
