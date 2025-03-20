@@ -1,7 +1,9 @@
-import React from 'react'
-
+import React from "react";
+import HeroSection from "../components/HeroSection";
 export default function Acceuil() {
   return (
-    <div>Home</div>
-  )
+    <main>
+      <HeroSection />
+    </main>
+  );
 }
