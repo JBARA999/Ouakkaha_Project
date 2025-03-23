@@ -1,83 +1,92 @@
-/* Hero Section */
 .hero {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    background: url("imgs/rouxfonce44-1.webp") center/cover no-repeat;
-    color: white;
-    text-align: center;
-    padding: 4rem 2rem;
-    position: relative;
-    margin-bottom: 4rem;
-    top:60px;
-  }
+  padding: 20px 0px;
+  margin-top: 60px;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
 
-
-  
-  /* Overlay Effect for Better Readability */
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(8, 8, 8, 0.9) 34%, rgba(169, 163, 163, 0.5) 110%);
-    z-index: 1;
+  div {
+    flex: 1;
   }
-  
-  /* Content */
-  .hero > div {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
+  div.image {
+    flex: 1;
   }
-  
-  /* Title */
-  .hero h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+  h1 {
+    font-size: 2.25rem;
+    line-height: 3rem;
     margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Paragraph */
-  .hero p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
-  
-  /* Button */
-  .hero button {
-    background: #f55b09;
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-  
-  .hero button:hover {
-    background: #e04e00;
-    transform: scale(1.05);
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-  
-    .hero p {
-      font-size: 1rem;
+
+    span {
+      color: #f55b09;
     }
   }
-  
+
+  p {
+    color: hsl(240 4% 46%);
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    button {
+      padding: 10px 20px;
+      border-radius: 20px;
+      outline: none;
+      border: none;
+      font-weight: bold;
+      transition: all 300ms ease;
+    }
+
+    & button:first-child {
+      background-color: #f55b09;
+      color: white;
+      &:hover {
+        transform: translateY(-0.3rem);
+      }
+    }
+
+    & button:last-child {
+      border: 1.6px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      span {
+          margin-top: 4px;
+      }
+      &:hover {
+        border: 1.6px solid #f55b09;
+        color: #f55b09;
+        
+      }
+    }
+  }
+
+  .image {
+    display: flex;
+    align-content: center;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 1px 1px 17px -2px rgba(0, 0, 0, 0.5);
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      border-radius: 20px;
+      transition: scale 600ms ease;
+      &:hover {
+        scale: 1.04;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+  }
+}
