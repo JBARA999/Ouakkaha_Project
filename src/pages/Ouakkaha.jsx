@@ -1,7 +1,10 @@
 import React from 'react'
+import ProductsPage from './ProductsPage'
 
 export default function Ouakkaha() {
   return (
-    <div>Ouakkaha</div>
+    <div>
+      <ProductsPage/>
+    </div>
   )
 }

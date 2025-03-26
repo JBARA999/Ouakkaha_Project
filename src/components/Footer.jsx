@@ -70,16 +70,16 @@ export default function Footer() {
           <div className="social-section">
             <h3 className="footer-title">Suivez-Nous</h3>
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Facebook">
+              <a href="https://www.facebook.com/p/Groupe-Ouakkaha-100071516293778/?locale=fr_FR" className="social-link" aria-label="Facebook">
                 <Facebook className="social-icon" />
               </a>
               <a href="#" className="social-link" aria-label="Twitter">
                 <Twitter className="social-icon" />
               </a>
-              <a href="#" className="social-link" aria-label="Instagram">
+              <a href="https://www.instagram.com/groupe_ouakkaha/" className="social-link" aria-label="Instagram">
                 <Instagram className="social-icon" />
               </a>
-              <a href="#" className="social-link" aria-label="Youtube">
+              <a href="https://www.youtube.com/@groupeouakkaha2169" className="social-link" aria-label="Youtube">
                 <Youtube className="social-icon" />
               </a>
             </div>

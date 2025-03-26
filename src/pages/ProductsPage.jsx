@@ -12,7 +12,7 @@ const products = [
     category: "Volaille",
     description:
       "Un poulet fermier de couleur marron, élevé en plein air avec une alimentation naturelle pour une chair tendre et savoureuse.",
-    image: "../../public/imgs/brown-hen-isolated_146346-1501.avif",
+    image: "../../imgs/brown-hen-isolated_146346-1501.avif",
     price: 125,
     oldPrice: 150, // Added old price for discount display
     rating: 4.9,
@@ -27,7 +27,7 @@ const products = [
     description:
       "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
     image:
-      "../../public/imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
+      "../../imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
     price: 250,
     rating: 5.0,
     tags: ["bio", "élevé en liberté", "fermier"],
@@ -41,7 +41,7 @@ const products = [
     description:
       "Un poulet fermier de couleur claire, nourri avec des aliments naturels pour une qualité supérieure.",
     image:
-      "../../public/imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif",
+      "../../imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif",
     price: 80,
     oldPrice: 95,
     rating: 4.6,
@@ -55,7 +55,7 @@ const products = [
     description:
       "Trois adorables poussins élevés sans OGM, parfaits pour un élevage respectueux de l'environnement.",
     image:
-      "../../public/imgs/three-small-chickens-isolated-white-background_488220-8004.avif",
+      "../../imgs/three-small-chickens-isolated-white-background_488220-8004.avif",
     price: 95,
     rating: 4.7,
     tags: ["poussins", "biologique", "sans OGM"],

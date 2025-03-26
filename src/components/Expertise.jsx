@@ -261,7 +261,7 @@ const Expertise = () => {
           </div>
 
           <div className="products-cta">
-            <Link to="/products" className="cta-button">
+            <Link to="/ouakkaha" className="cta-button">
               Découvrir tous nos produits
             </Link>
           </div>
