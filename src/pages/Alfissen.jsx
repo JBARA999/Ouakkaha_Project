@@ -1,14 +1,10 @@
-import React from "react";
 
+import ProductsPage from "./ProductsPage";
+import { AlafIssenProducts } from "../data/AlafIssenData";
 export default function Alfissen() {
   return (
-    <div
-      style={{
-        marginTop: "8rem",
-        marginBottom: "5rem",
-        textAlign: "center",
-      }}>
-      <h1>Alf Issen</h1>
+    <div>
+      <ProductsPage products={AlafIssenProducts} type={"alafissen"}/>
     </div>
   );
 }
