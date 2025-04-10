@@ -8,7 +8,7 @@ function ContactsOuakkaha () {
     return(
         <>
           <div className="logoOuakkaha">
-        <img src="/imgs/Logo.png" alt="" />
+        <img src="/imgs/Logo.png" className="contact-logo" alt="" />
       </div>
 
       <div className="contact">

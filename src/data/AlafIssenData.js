@@ -12,6 +12,7 @@ export  const AlafIssenProducts = [{
     url: "/poulet-fermier-marron",
     isNew: true,
     minQuantity: 500, // Added minimum quantity
+    addWith:50
   },
   {
     id: 2,

@@ -1,8 +1,26 @@
+.contact-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--primary-color);
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--primary-color);
+  font-family: 'Montserrat', sans-serif; /* Use your preferred font */
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .logoOuakkaha {
-  margin-top: 8rem;
+  margin-top: 2rem;
   padding-left: 6rem;
   padding-bottom: 3px;
   background-color: #f8f9fa;
+}
+
+.contact-logo{
+  width: 220px;
 }
 .contact {
   margin-bottom: 5rem;

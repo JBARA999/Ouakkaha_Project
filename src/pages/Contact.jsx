@@ -7,6 +7,7 @@ import ContactsAlfiseen from "../components/contacts/ContactsAlfiseen";
 export default function Contact() {
   return (
     <>
+    <h1 className="container contact-heading" style={{marginTop:"6rem"}}>Contact & Support</h1>
     <ContactsOuakkaha/>
     <ContactsAlfiseen/>
    

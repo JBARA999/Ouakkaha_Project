@@ -8,7 +8,7 @@ function ContactsAlfiseen () {
     return(
         <>
           <div className="logoissen">
-        <img src="/imgs/Logo-issen.png" alt="" />
+        <img src="/imgs/logo-issen.png" className="contact-logo" style={{marginBlock:"1rem"}} alt="" />
       </div>
 
       <div className="contactIssen">
