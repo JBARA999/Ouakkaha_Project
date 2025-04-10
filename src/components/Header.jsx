@@ -17,7 +17,7 @@ export default function Header() {
             <nav className="navbar">
               <div>
                 {isAlafIssen ? (
-                  <img className="logo" src="imgs/logo-issen.png" alt="logo" />
+                  <img className="logo" src="imgs/Logo-issen.png" alt="logo" />
                 ) : (
                   <img className="logo" src="imgs/Logo.png" alt="logo" />
                 )}

@@ -4,9 +4,7 @@ import "../styles/expertise.css";
 import Title from "../components/Title";
 import { Link } from "react-router-dom";
 import HeroSection from "./HeroSection";
-import QualitySection from "./QualitySection"
-
-
+import QualitySection from "./QualitySection";
 
 const featuresOukkaha = [
   "Techniques d'extraction traditionnelles",
@@ -33,7 +31,11 @@ const statsOukaha = [
 ];
 const statsAlafIssen = [
   { number: 40, suffix: "+", description: "années d'expérience" },
-  { number: 500, suffix: "+", description: "lignesde fabrication automitisées" },
+  {
+    number: 500,
+    suffix: "+",
+    description: "lignesde fabrication automitisées",
+  },
   { number: 3343, suffix: "+", description: "Capacité de production" },
   { number: 553, suffix: "+", description: "Capacité de stockage des MP" },
 ];
@@ -91,9 +93,16 @@ const Oukkahaimgs = [
   "camionOuakkaha.jpg",
 ];
 
-const AlafIssenImgs = [""];
+const AlafIssenImgs = [
+  "cow-feed.jpg", 
+  "sheep-feed.jpg",
+   "chekeen-feed.jpg",
+   "chick-feed.avif",
+   "qualiti.jpg",
+   "camionIssen.jpg"
+  ];
 
-const StatItem = ({type , number, suffix = "", description, delay = 0 }) => {
+const StatItem = ({ type, number, suffix = "", description, delay = 0 }) => {
   const [count, setCount] = useState(0);
   const counterRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -139,8 +148,10 @@ const StatItem = ({type , number, suffix = "", description, delay = 0 }) => {
 
   return (
     <div className="stat-item">
-      <div className={`${type == "issen" ? "stat-number-issen" : "stat-number"}`} >
-        <span ref={counterRef} >{count}</span>
+      <div
+        className={`${type == "issen" ? "stat-number-issen" : "stat-number"}`}
+      >
+        <span ref={counterRef}>{count}</span>
         <span>{suffix}</span>
       </div>
       <p className="stat-description">{description}</p>
@@ -149,9 +160,6 @@ const StatItem = ({type , number, suffix = "", description, delay = 0 }) => {
 };
 
 const Expertise = () => {
-
-
-
   return (
     <>
       <HeroSection imgs={Oukkahaimgs}>
@@ -245,11 +253,12 @@ const Expertise = () => {
         </div>
       </section>
 
-
-
       <section className="stats-section">
         <div className="stats-container">
-          <h2 className="stats-title">Groupe <span style={{color:"#f55b09"}}>OUAKKAHA </span> en chiffres</h2>
+          <h2 className="stats-title">
+            Groupe <span style={{ color: "#f55b09" }}>OUAKKAHA </span> en
+            chiffres
+          </h2>
           <div className="stats-grid">
             {statsOukaha.map((stat, index) => (
               <StatItem
@@ -264,10 +273,9 @@ const Expertise = () => {
         </div>
       </section>
 
-
       <HeroSection imgs={AlafIssenImgs}>
         <h1 className="animate-fade">
-          <span style={{color:"#26b82d"}}>Alaf Issen : </span>
+          <span style={{ color: "#26b82d" }}>Alaf Issen : </span>
           L’alimentation animale au service de la performance{" "}
         </h1>
         <p>
@@ -276,8 +284,13 @@ const Expertise = () => {
           Maroc
         </p>
         <div className="links">
-          <button className="discover-btn" style={{backgroundColor:"#26b82d"}}>Découvrir notre histoire</button>
-          <button className="products-btn  alf-button" >
+          <button
+            className="discover-btn"
+            style={{ backgroundColor: "#26b82d" }}
+          >
+            Découvrir notre histoire
+          </button>
+          <button className="products-btn  alf-button">
             Voir nos produits
             <span className="icon">
               <ArrowRight />
@@ -285,7 +298,6 @@ const Expertise = () => {
           </button>
         </div>
       </HeroSection>
-
 
       <section>
         <div className="expertise-container">
@@ -346,11 +358,14 @@ const Expertise = () => {
 
       <section className="stats-section">
         <div className="stats-container">
-          <h2 className="stats-title">Groupe <span style={{color:"#26b82d"}}>ALAFISSEN </span>en chiffres</h2>
+          <h2 className="stats-title">
+            Groupe <span style={{ color: "#26b82d" }}>ALAFISSEN </span>en
+            chiffres
+          </h2>
           <div className="stats-grid">
             {statsAlafIssen.map((stat, index) => (
               <StatItem
-              type="issen"
+                type="issen"
                 key={index}
                 number={stat.number}
                 suffix={stat.suffix}
@@ -362,16 +377,14 @@ const Expertise = () => {
         </div>
       </section>
 
+      {/* <ProductsSection/> */}
 
-     {/* <ProductsSection/> */}
-
-     <QualitySection />
+      <QualitySection />
     </>
   );
 };
 
 export default Expertise;
-
 
 const ProductsSection = () => {
   const scrollContainerRef = useRef(null); // Properly typed and initialized
@@ -389,67 +402,68 @@ const ProductsSection = () => {
     }
   };
 
-
-  return  <section className="products-section">
-  <div className="products-container">
-    <div className="products-header">
-      <Title title={"Nos Produits"} type={"oukkaha"} />
-      <h2 className="products-title" style={{ marginBottom: "20px" }}>
-        Découvrez notre gamme de produits d'excellence
-      </h2>
-      <div className="products-navigation">
-        <button
-          onClick={() => scroll("left")}
-          className="navigation-button"
-          aria-label="Produits précédents"
-        >
-          <ArrowLeft className="icon" />
-        </button>
-        <button
-          onClick={() => scroll("right")}
-          className="navigation-button"
-          aria-label="Produits suivants"
-        >
-          <ArrowRight className="icon" />
-        </button>
-      </div>
-    </div>
-
-    {/* Scrollable Products Grid */}
-    <div
-      ref={scrollContainerRef} // Assign the ref here
-      className="products-grid"
-    >
-      {products.map((product) => (
-        <div key={product.id} className="product-card">
-          <div className="product-image-container">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="product-image"
-            />
-            <span className="product-category">{product.category}</span>
-          </div>
-          <div className="product-details">
-            <h3 className="product-name">{product.name}</h3>
-            <p className="product-description">{product.description}</p>
-            <div className="product-footer">
-              <span className="product-price">{product.price}</span>
-              <Link to={product.url} className="product-link">
-                Voir plus
-                <ExternalLink className="link-icon" />
-              </Link>
-            </div>
+  return (
+    <section className="products-section">
+      <div className="products-container">
+        <div className="products-header">
+          <Title title={"Nos Produits"} type={"oukkaha"} />
+          <h2 className="products-title" style={{ marginBottom: "20px" }}>
+            Découvrez notre gamme de produits d'excellence
+          </h2>
+          <div className="products-navigation">
+            <button
+              onClick={() => scroll("left")}
+              className="navigation-button"
+              aria-label="Produits précédents"
+            >
+              <ArrowLeft className="icon" />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="navigation-button"
+              aria-label="Produits suivants"
+            >
+              <ArrowRight className="icon" />
+            </button>
           </div>
         </div>
-      ))}
-    </div>
 
-    <div className="products-cta">
-      <Link to="/ouakkaha" className="cta-button">
-        Découvrir tous nos produits
-      </Link>
-    </div>
-  </div>
-</section>
-}
+        {/* Scrollable Products Grid */}
+        <div
+          ref={scrollContainerRef} // Assign the ref here
+          className="products-grid"
+        >
+          {products.map((product) => (
+            <div key={product.id} className="product-card">
+              <div className="product-image-container">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="product-image"
+                />
+                <span className="product-category">{product.category}</span>
+              </div>
+              <div className="product-details">
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+                <div className="product-footer">
+                  <span className="product-price">{product.price}</span>
+                  <Link to={product.url} className="product-link">
+                    Voir plus
+                    <ExternalLink className="link-icon" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="products-cta">
+          <Link to="/ouakkaha" className="cta-button">
+            Découvrir tous nos produits
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
