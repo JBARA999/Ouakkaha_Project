@@ -15,6 +15,8 @@ export const Oukkahaproducts = [
       url: "/poulet-fermier-marron",
       isNew: true,
       minQuantity: 500, // Added minimum quantity
+      addWith:50,
+
     },
     {
       id: 2,
@@ -30,6 +32,8 @@ export const Oukkahaproducts = [
       url: "/poulet-blanc-bio",
       discount: 10,
       minQuantity: 500, // Added minimum quantity
+      addWith:50,
+
     },
     {
       id: 3,
@@ -45,6 +49,8 @@ export const Oukkahaproducts = [
       tags: ["fermier", "naturel", "qualité supérieure"],
       url: "/poulet-fermier-clair",
       minQuantity: 500, // Added minimum quantity
+      addWith:50,
+
     },
     {
       id: 4,
@@ -60,5 +66,7 @@ export const Oukkahaproducts = [
       url: "/trio-poussins-bio",
       isNew: true,
       minQuantity: 500, // Added minimum quantity
+      addWith:50,
+
     },
   ];

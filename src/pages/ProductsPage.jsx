@@ -1,50 +1,80 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Filter, ShoppingCart, Star, Heart, Eye, X, ChevronRight, Plus, Minus } from "lucide-react";
-import "../styles/Product.css"; 
+import {
+  Filter,
+  ShoppingCart,
+  Star,
+  Heart,
+  Eye,
+  X,
+  ChevronRight,
+  Plus,
+  Minus,
+} from "lucide-react";
+import "../styles/Product.css";
 import toast from "react-hot-toast";
-// data for oukkaha product page 
+// data for oukkaha product page
 // data for oukkaha alaf issen page
 // import {AlafIssenProducts} from "../data/AlafIssenData.js"
- 
+
 // Extract unique categories for filter
-const ProductsPage = ({products, type=false}) => {
+const ProductsPage = ({ products, type = false }) => {
   const isAlafIssen = type === "alafissen";
   const themeColor = isAlafIssen ? "#4caf50" : "#f55b09"; // Green for Alafissen, Orange for default
-  
+
   const categories = Array.from(
     new Set(products.map((product) => product.category))
   );
-  
-  useEffect(() => {
-    // Scroll to top when page loads
-    window.scrollTo(0, 0);
-    
-    // Apply global color styles based on the type
-    if (isAlafIssen) {
-      document.documentElement.style.setProperty('--primary-color', '#4caf50');
-      document.documentElement.style.setProperty('--primary-dark', '#3d8b40');
-      document.documentElement.style.setProperty('--primary-light', '#e8f5e9');
-    } else {
-      document.documentElement.style.setProperty('--primary-color', '#f55b09');
-      document.documentElement.style.setProperty('--primary-dark', '#d44800');
-      document.documentElement.style.setProperty('--primary-light', '#fff8ed');
-    }
-    
-    // Cleanup function to reset styles when component unmounts
-    return () => {
-      document.documentElement.style.setProperty('--primary-color', '#f55b09');
-      document.documentElement.style.setProperty('--primary-dark', '#d44800');
-      document.documentElement.style.setProperty('--primary-light', '#fff8ed');
-    };
-  }, [isAlafIssen]);
-  
+
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState([]);
-  const [showCart, setShowCart] = useState(false); // Changed to false initially
-  const [showHeaderCart, setShowHeaderCart] = useState(false); // Added state for header cart
-  
+  const [showCart, setShowCart] = useState(false);
+  const [showHeaderCart, setShowHeaderCart] = useState(false);
+
+  // Load cart data from localStorage on component mount
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cartItems");
+    if (storedCart) {
+      try {
+        const parsedCart = JSON.parse(storedCart);
+        setCartItems(parsedCart);
+      } catch (error) {
+        console.error("Error parsing cart data from localStorage:", error);
+        // If parsing fails, initialize with empty cart
+        setCartItems([]);
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  useEffect(() => {
+    // Scroll to top when page loads
+    window.scrollTo(0, 0);
+
+    // Apply global color styles based on the type
+    if (isAlafIssen) {
+      document.documentElement.style.setProperty("--primary-color", "#4caf50");
+      document.documentElement.style.setProperty("--primary-dark", "#3d8b40");
+      document.documentElement.style.setProperty("--primary-light", "#e8f5e9");
+    } else {
+      document.documentElement.style.setProperty("--primary-color", "#f55b09");
+      document.documentElement.style.setProperty("--primary-dark", "#d44800");
+      document.documentElement.style.setProperty("--primary-light", "#fff8ed");
+    }
+
+    // Cleanup function to reset styles when component unmounts
+    return () => {
+      document.documentElement.style.setProperty("--primary-color", "#f55b09");
+      document.documentElement.style.setProperty("--primary-dark", "#d44800");
+      document.documentElement.style.setProperty("--primary-light", "#fff8ed");
+    };
+  }, [isAlafIssen]);
+
   // Filter products by category
   const filterByCategory = (category) => {
     setSelectedCategory(category);
@@ -56,19 +86,20 @@ const ProductsPage = ({products, type=false}) => {
       setFilteredProducts(products);
     }
   };
-  
-  // Add to cart functionality with minimum quantity
+
+  // Add to cart functionality with increment based on addWith property
   const addToCart = (productId) => {
-    const product = products.find(p => p.id === productId);
+    const product = products.find((p) => p.id === productId);
     const minQuantity = product.minQuantity || 1;
-    
+    const addWithValue = product.addWith || minQuantity; // Use addWith if available, otherwise use minQuantity
+
     const existingItem = cartItems.find((item) => item.id === productId);
     if (existingItem) {
-      // Increment quantity if already in cart
+      // Increment quantity with addWith value if already in cart
       setCartItems(
         cartItems.map((item) =>
           item.id === productId
-            ? { ...item, quantity: item.quantity + minQuantity }
+            ? { ...item, quantity: item.quantity + addWithValue }
             : item
         )
       );
@@ -76,23 +107,23 @@ const ProductsPage = ({products, type=false}) => {
       // Add new item to cart with minimum quantity
       setCartItems([...cartItems, { id: productId, quantity: minQuantity }]);
     }
-    
+
     // Show toast notification
     toast.success("Produit ajouté au panier");
   };
-  
-  // Update quantity functionality
+
+  // Update quantity functionality using addWith as step
   const updateQuantity = (productId, change) => {
-    const product = products.find(p => p.id === productId);
+    const product = products.find((p) => p.id === productId);
     if (!product) return;
-    
+
     const minQuantity = product.minQuantity || 1;
-    const step = minQuantity; // Use min quantity as the step value
-    
+    const step = product.addWith || minQuantity; // Use addWith as step if available
+
     setCartItems(
       cartItems.map((item) => {
         if (item.id === productId) {
-          const newQuantity = item.quantity + (change * step);
+          const newQuantity = item.quantity + change * step;
           // Ensure quantity is at least minimum
           return { ...item, quantity: Math.max(minQuantity, newQuantity) };
         }
@@ -100,33 +131,44 @@ const ProductsPage = ({products, type=false}) => {
       })
     );
   };
-  
+
   // Remove from cart functionality
   const removeFromCart = (productId) => {
-    setCartItems(cartItems.filter(item => item.id !== productId));
+    setCartItems(cartItems.filter((item) => item.id !== productId));
     toast.info("Produit retiré du panier");
   };
-  
+
+  // Clear entire cart
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem("cartItems");
+    toast.info("Panier vidé");
+    setShowCart(false);
+    setShowHeaderCart(false);
+  };
+
   // Cart total calculation
   const cartTotal = cartItems.reduce((total, item) => {
     const product = products.find((p) => p.id === item.id);
     return total + (product ? product.price * item.quantity : 0);
   }, 0);
-  
+
   // Total items in cart
   const cartItemsCount = cartItems.reduce((count, item) => count + 1, 0);
-  
+
   // Function to render star rating
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
-    
+
     return (
       <div className="rating-stars">
         {[...Array(5)].map((_, i) => (
-          <Star 
-            key={i} 
-            className={`star-icon ${i < fullStars ? 'filled' : ''} ${hasHalfStar && i === fullStars ? 'half-filled' : ''}`} 
+          <Star
+            key={i}
+            className={`star-icon ${i < fullStars ? "filled" : ""} ${
+              hasHalfStar && i === fullStars ? "half-filled" : ""
+            }`}
             size={16}
           />
         ))}
@@ -134,12 +176,12 @@ const ProductsPage = ({products, type=false}) => {
       </div>
     );
   };
-  
+
   // Class name helper function for theme-based styling
   const getThemeClassName = (baseClass) => {
     return isAlafIssen ? `${baseClass} alafissen-theme` : baseClass;
   };
-  
+
   return (
     <div className={getThemeClassName("products-page")}>
       {/* Added Header with Cart */}
@@ -149,11 +191,11 @@ const ProductsPage = ({products, type=false}) => {
             <Link to="/" className="logo">
               {isAlafIssen ? "ALAF ISSEN" : "OUAKKAHA MOHAMED"}
             </Link>
-            
+
             <div className="header-right">
               <div className="header-cart-container">
-                <button 
-                  className="header-cart-button" 
+                <button
+                  className="header-cart-button"
                   onClick={() => setShowHeaderCart(!showHeaderCart)}
                   aria-label="Votre panier"
                 >
@@ -162,20 +204,20 @@ const ProductsPage = ({products, type=false}) => {
                     <span className="cart-badge">{cartItemsCount}</span>
                   )}
                 </button>
-                
+
                 {/* Header Dropdown Cart */}
                 {showHeaderCart && cartItems.length > 0 && (
                   <div className="header-cart-dropdown">
                     <div className="cart-header">
                       <h3>Votre Panier ({cartItemsCount})</h3>
-                      <button 
+                      <button
                         className="close-cart"
                         onClick={() => setShowHeaderCart(false)}
                       >
                         <X size={16} />
                       </button>
                     </div>
-                    
+
                     <div className="cart-items-list">
                       {cartItems.map((item) => {
                         const product = products.find((p) => p.id === item.id);
@@ -188,14 +230,18 @@ const ProductsPage = ({products, type=false}) => {
                               <h4>{product.name}</h4>
                               <div className="cart-item-pricing">
                                 <div className="quantity-controls">
-                                  <button 
+                                  <button
                                     onClick={() => updateQuantity(item.id, -1)}
-                                    disabled={item.quantity <= product.minQuantity}
+                                    disabled={
+                                      item.quantity <= product.minQuantity
+                                    }
                                   >
                                     <Minus size={14} />
                                   </button>
                                   <span>{item.quantity}</span>
-                                  <button onClick={() => updateQuantity(item.id, 1)}>
+                                  <button
+                                    onClick={() => updateQuantity(item.id, 1)}
+                                  >
                                     <Plus size={14} />
                                   </button>
                                 </div>
@@ -204,7 +250,7 @@ const ProductsPage = ({products, type=false}) => {
                                 </span>
                               </div>
                             </div>
-                            <button 
+                            <button
                               className="remove-cart-item"
                               onClick={() => removeFromCart(item.id)}
                             >
@@ -214,18 +260,20 @@ const ProductsPage = ({products, type=false}) => {
                         ) : null;
                       })}
                     </div>
-                    
+
                     <div className="header-cart-footer">
                       <div className="cart-total">
                         <span>Total</span>
                         <span className="total-amount">{cartTotal} MAD</span>
                       </div>
                       <div className="cart-actions">
-                        <button className={getThemeClassName("checkout-button")}>
+                        <button
+                          className={getThemeClassName("checkout-button")}
+                        >
                           <ShoppingCart size={16} />
                           Passer la commande
                         </button>
-                        <button 
+                        <button
                           className="view-cart-button"
                           onClick={() => {
                             setShowHeaderCart(false);
@@ -233,6 +281,19 @@ const ProductsPage = ({products, type=false}) => {
                           }}
                         >
                           Voir le panier
+                        </button>
+                        <button
+                          className="clear-cart-button"
+                          onClick={clearCart}
+                          style={{
+                            padding: "10px",
+                            backgroundColor: "#ea3232",
+                            color: "white",
+                            borderRadius: "5px",
+                            fontWeight: "700",
+                          }}
+                        >
+                          Vider le panier
                         </button>
                       </div>
                     </div>
@@ -289,8 +350,8 @@ const ProductsPage = ({products, type=false}) => {
                     <ShoppingCart className="cart-icon" size={18} />
                     <h3 className="cart-title">Votre Panier</h3>
                   </div>
-                  <button 
-                    className="cart-toggle" 
+                  <button
+                    className="cart-toggle"
                     onClick={() => setShowCart(!showCart)}
                     aria-label="Masquer le panier"
                   >
@@ -303,9 +364,12 @@ const ProductsPage = ({products, type=false}) => {
                     return product ? (
                       <div key={item.id} className="cart-item">
                         <span className="cart-item-name">{product.name}</span>
+                        <div className="cart-item-img">
+                          <img src={product.image} alt="" />
+                        </div>
                         <div className="cart-item-details">
                           <div className="quantity-controls">
-                            <button 
+                            <button
                               onClick={() => updateQuantity(item.id, -1)}
                               disabled={item.quantity <= product.minQuantity}
                             >
@@ -319,7 +383,7 @@ const ProductsPage = ({products, type=false}) => {
                           <span className="cart-item-price">
                             {product.price * item.quantity} MAD
                           </span>
-                          <button 
+                          <button
                             className="remove-item-button"
                             onClick={() => removeFromCart(item.id)}
                             aria-label="Retirer du panier"
@@ -335,17 +399,24 @@ const ProductsPage = ({products, type=false}) => {
                   <span>Total</span>
                   <span>{cartTotal} MAD</span>
                 </div>
-                <button className={getThemeClassName("checkout-button")}>
-                  <ShoppingCart size={16} />
-                  Passer la commande
-                </button>
+                <div className="cart-actions-container">
+                  <button className={getThemeClassName("checkout-button")}>
+                    <ShoppingCart size={16} />
+                    Passer la commande
+                  </button>
+                  <button className="clear-cart-button" onClick={clearCart}>
+                    Vider le panier
+                  </button>
+                </div>
               </div>
             )}
           </div>
           <div className="products-grid-product">
             <div className="products-header">
               <h1 className="products-title">
-                {isAlafIssen ? "Boutique ALAF ISSEN" : "Boutique OUAKKAHA MOHAMED"}
+                {isAlafIssen
+                  ? "Boutique ALAF ISSEN"
+                  : "Boutique OUAKKAHA MOHAMED"}
               </h1>
               <div className="products-count">
                 {filteredProducts.length} produits
@@ -362,12 +433,20 @@ const ProductsPage = ({products, type=false}) => {
                     />
                     <div className="product-badges">
                       {product.isNew && (
-                        <span className={`badge new-badge ${isAlafIssen ? 'alafissen-new-badge' : ''}`}>
+                        <span
+                          className={`badge new-badge ${
+                            isAlafIssen ? "alafissen-new-badge" : ""
+                          }`}
+                        >
                           Nouveau
                         </span>
                       )}
                       {product.discount > 0 && (
-                        <span className={`badge discount-badge ${isAlafIssen ? 'alafissen-discount-badge' : ''}`}>
+                        <span
+                          className={`badge discount-badge ${
+                            isAlafIssen ? "alafissen-discount-badge" : ""
+                          }`}
+                        >
                           -{product.discount}%
                         </span>
                       )}
@@ -391,7 +470,11 @@ const ProductsPage = ({products, type=false}) => {
                         className={getThemeClassName("add-to-cart-button")}
                         onClick={() => addToCart(product.id)}
                       >
-                        <ShoppingCart className="cart-icon" color="white" size={16} />
+                        <ShoppingCart
+                          className="cart-icon"
+                          color="white"
+                          size={16}
+                        />
                         <span>Ajouter au panier</span>
                       </button>
                     </div>
@@ -411,12 +494,16 @@ const ProductsPage = ({products, type=false}) => {
                         {product.price} MAD
                       </p>
                     </div>
-                    <p className="product-description">
-                      {product.description}
-                    </p>
-                    {/* Added min quantity display */}
+                    <p className="product-description">{product.description}</p>
+                    {/* Updated to show both minQuantity and addWith */}
                     <div className="min-quantity">
                       <span>Quantité minimum: {product.minQuantity}</span>
+                      {product.addWith && (
+                        <span className="add-with-info">
+                          {" "}
+                          | Incrément: {product.addWith}
+                        </span>
+                      )}
                     </div>
                     <div className="product-tags">
                       {product.tags.map((tag, index) => (

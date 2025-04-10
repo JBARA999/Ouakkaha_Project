@@ -12,6 +12,22 @@ export  const AlafIssenProducts = [{
     url: "/poulet-fermier-marron",
     isNew: true,
     minQuantity: 500, // Added minimum quantity
+    addWith:50,
+  },
+  {
+    id: 2,
+    name: "Poulet Blanc Bio – Élevé en Liberté",
+    category: "poulet blanc",
+    description:
+      "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
+    image:
+      "../../imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
+    price: 250,
+    rating: 5.0,
+    tags: ["bio", "élevé en liberté", "fermier"],
+    url: "/poulet-blanc-bio",
+    discount: 10,
+    minQuantity: 500, // Added minimum quantity
     addWith:50
   },
   {
@@ -28,21 +44,7 @@ export  const AlafIssenProducts = [{
     url: "/poulet-blanc-bio",
     discount: 10,
     minQuantity: 500, // Added minimum quantity
-  },
-  {
-    id: 2,
-    name: "Poulet Blanc Bio – Élevé en Liberté",
-    category: "poulet blanc",
-    description:
-      "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
-    image:
-      "../../imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
-    price: 250,
-    rating: 5.0,
-    tags: ["bio", "élevé en liberté", "fermier"],
-    url: "/poulet-blanc-bio",
-    discount: 10,
-    minQuantity: 500, // Added minimum quantity
+    addWith:50
   },
   {
     id: 3,
@@ -58,6 +60,8 @@ export  const AlafIssenProducts = [{
     tags: ["fermier", "naturel", "qualité supérieure"],
     url: "/poulet-fermier-clair",
     minQuantity: 500, // Added minimum quantity
+    addWith:50,
+
   },
   {
     id: 4,
@@ -73,5 +77,7 @@ export  const AlafIssenProducts = [{
     url: "/trio-poussins-bio",
     isNew: true,
     minQuantity: 500, // Added minimum quantity
+    addWith:50,
+
   },
 ];
