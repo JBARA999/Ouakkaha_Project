@@ -7,7 +7,7 @@ export const Oukkahaproducts = [
       category: "Volaille",
       description:
         "Un poulet fermier de couleur marron, élevé en plein air avec une alimentation naturelle pour une chair tendre et savoureuse.",
-      image: "/imgs/brown-hen-isolated_146346-1501.avif",
+      image: "/imgs/brown.avif",
       price: 125,
       oldPrice: 150,
       rating: 4.9,
@@ -24,7 +24,7 @@ export const Oukkahaproducts = [
         "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
       image:
         "/imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
-      price: 250,
+      price: 25,
       rating: 5.0,
       tags: ["bio", "élevé en liberté", "fermier"],
       url: "/poulet-blanc-bio",
