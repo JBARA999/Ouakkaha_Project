@@ -31,7 +31,7 @@ export  const AlafIssenProducts = [{
     addWith:50
   },
   {
-    id: 2,
+    id: 3,
     name: "Poulet Blanc Bio – Élevé en Liberté",
     category: "poulet blanc",
     description:
@@ -47,7 +47,7 @@ export  const AlafIssenProducts = [{
     addWith:50
   },
   {
-    id: 3,
+    id: 4,
     name: "Poulet Fermier Clair – Alimentation Naturelle",
     category: "Volaille",
     description:
@@ -64,7 +64,7 @@ export  const AlafIssenProducts = [{
 
   },
   {
-    id: 4,
+    id: 34,
     name: "Trio de Poussins Bio – Élevage Naturel",
     category: "poussins",
     description:

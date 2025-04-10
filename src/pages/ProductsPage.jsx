@@ -20,7 +20,6 @@ import toast from "react-hot-toast";
 // Extract unique categories for filter
 const ProductsPage = ({ products, type = false }) => {
   const isAlafIssen = type === "alafissen";
-  const themeColor = isAlafIssen ? "#4caf50" : "#f55b09"; // Green for Alafissen, Orange for default
 
   const categories = Array.from(
     new Set(products.map((product) => product.category))
@@ -154,7 +153,7 @@ const ProductsPage = ({ products, type = false }) => {
   }, 0);
 
   // Total items in cart
-  const cartItemsCount = cartItems.reduce((count, item) => count + 1, 0);
+  const cartItemsCount = cartItems.reduce((count) => count + 1, 0);
 
   // Function to render star rating
   const renderStars = (rating) => {
