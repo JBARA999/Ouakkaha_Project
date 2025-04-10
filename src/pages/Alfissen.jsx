@@ -1,7 +1,10 @@
-import React from 'react'
-
+import React from "react";
+import ProductsPage from "./ProductsPage";
+import { AlafIssenProducts } from "../data/AlafIssenData";
 export default function Alfissen() {
   return (
-    <div>Alfissen</div>
-  )
+    <div>
+      <ProductsPage products={AlafIssenProducts} type={"alafissen"}/>
+    </div>
+  );
 }

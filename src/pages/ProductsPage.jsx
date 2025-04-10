@@ -3,88 +3,48 @@ import { Link } from "react-router-dom";
 import { Filter, ShoppingCart, Star, Heart, Eye, X, ChevronRight, Plus, Minus } from "lucide-react";
 import "../styles/Product.css"; 
 import toast from "react-hot-toast";
-
-// Sample products data with minimum quantity added
-const products = [
-  {
-    id: 1,
-    name: "Poulet Fermier Marron – Élevé en Plein Air",
-    category: "Volaille",
-    description:
-      "Un poulet fermier de couleur marron, élevé en plein air avec une alimentation naturelle pour une chair tendre et savoureuse.",
-    image: "../../imgs/brown-hen-isolated_146346-1501.avif",
-    price: 125,
-    oldPrice: 150,
-    rating: 4.9,
-    tags: ["fermier", "plein air", "naturel"],
-    url: "/poulet-fermier-marron",
-    isNew: true,
-    minQuantity: 500, // Added minimum quantity
-  },
-  {
-    id: 2,
-    name: "Poulet Blanc Bio – Élevé en Liberté",
-    category: "poulet blanc",
-    description:
-      "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
-    image:
-      "../../imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
-    price: 250,
-    rating: 5.0,
-    tags: ["bio", "élevé en liberté", "fermier"],
-    url: "/poulet-blanc-bio",
-    discount: 10,
-    minQuantity: 500, // Added minimum quantity
-  },
-  {
-    id: 3,
-    name: "Poulet Fermier Clair – Alimentation Naturelle",
-    category: "Volaille",
-    description:
-      "Un poulet fermier de couleur claire, nourri avec des aliments naturels pour une qualité supérieure.",
-    image:
-      "../../imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif",
-    price: 80,
-    oldPrice: 95,
-    rating: 4.6,
-    tags: ["fermier", "naturel", "qualité supérieure"],
-    url: "/poulet-fermier-clair",
-    minQuantity: 500, // Added minimum quantity
-  },
-  {
-    id: 4,
-    name: "Trio de Poussins Bio – Élevage Naturel",
-    category: "poussins",
-    description:
-      "Trois adorables poussins élevés sans OGM, parfaits pour un élevage respectueux de l'environnement.",
-    image:
-      "../../imgs/three-small-chickens-isolated-white-background_488220-8004.avif",
-    price: 95,
-    rating: 4.7,
-    tags: ["poussins", "biologique", "sans OGM"],
-    url: "/trio-poussins-bio",
-    isNew: true,
-    minQuantity: 500, // Added minimum quantity
-  },
-];
-
+// data for oukkaha product page 
+// data for oukkaha alaf issen page
+// import {AlafIssenProducts} from "../data/AlafIssenData.js"
+ 
 // Extract unique categories for filter
-const categories = Array.from(
-  new Set(products.map((product) => product.category))
-);
-
-const ProductsPage = () => {
+const ProductsPage = ({products, type=false}) => {
+  const isAlafIssen = type === "alafissen";
+  const themeColor = isAlafIssen ? "#4caf50" : "#f55b09"; // Green for Alafissen, Orange for default
+  
+  const categories = Array.from(
+    new Set(products.map((product) => product.category))
+  );
+  
   useEffect(() => {
     // Scroll to top when page loads
     window.scrollTo(0, 0);
-  }, []);
-
+    
+    // Apply global color styles based on the type
+    if (isAlafIssen) {
+      document.documentElement.style.setProperty('--primary-color', '#4caf50');
+      document.documentElement.style.setProperty('--primary-dark', '#3d8b40');
+      document.documentElement.style.setProperty('--primary-light', '#e8f5e9');
+    } else {
+      document.documentElement.style.setProperty('--primary-color', '#f55b09');
+      document.documentElement.style.setProperty('--primary-dark', '#d44800');
+      document.documentElement.style.setProperty('--primary-light', '#fff8ed');
+    }
+    
+    // Cleanup function to reset styles when component unmounts
+    return () => {
+      document.documentElement.style.setProperty('--primary-color', '#f55b09');
+      document.documentElement.style.setProperty('--primary-dark', '#d44800');
+      document.documentElement.style.setProperty('--primary-light', '#fff8ed');
+    };
+  }, [isAlafIssen]);
+  
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false); // Changed to false initially
   const [showHeaderCart, setShowHeaderCart] = useState(false); // Added state for header cart
-
+  
   // Filter products by category
   const filterByCategory = (category) => {
     setSelectedCategory(category);
@@ -96,7 +56,7 @@ const ProductsPage = () => {
       setFilteredProducts(products);
     }
   };
-
+  
   // Add to cart functionality with minimum quantity
   const addToCart = (productId) => {
     const product = products.find(p => p.id === productId);
@@ -120,7 +80,7 @@ const ProductsPage = () => {
     // Show toast notification
     toast.success("Produit ajouté au panier");
   };
-
+  
   // Update quantity functionality
   const updateQuantity = (productId, change) => {
     const product = products.find(p => p.id === productId);
@@ -140,22 +100,22 @@ const ProductsPage = () => {
       })
     );
   };
-
+  
   // Remove from cart functionality
   const removeFromCart = (productId) => {
     setCartItems(cartItems.filter(item => item.id !== productId));
     toast.info("Produit retiré du panier");
   };
-
+  
   // Cart total calculation
   const cartTotal = cartItems.reduce((total, item) => {
     const product = products.find((p) => p.id === item.id);
     return total + (product ? product.price * item.quantity : 0);
   }, 0);
-
+  
   // Total items in cart
   const cartItemsCount = cartItems.reduce((count, item) => count + 1, 0);
-
+  
   // Function to render star rating
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -174,15 +134,20 @@ const ProductsPage = () => {
       </div>
     );
   };
-
+  
+  // Class name helper function for theme-based styling
+  const getThemeClassName = (baseClass) => {
+    return isAlafIssen ? `${baseClass} alafissen-theme` : baseClass;
+  };
+  
   return (
-    <div className="products-page">
+    <div className={getThemeClassName("products-page")}>
       {/* Added Header with Cart */}
       <header className="site-header">
         <div className="container">
           <div className="header-content">
             <Link to="/" className="logo">
-              OUAKKAHA MOHAMED
+              {isAlafIssen ? "ALAF ISSEN" : "OUAKKAHA MOHAMED"}
             </Link>
             
             <div className="header-right">
@@ -256,7 +221,7 @@ const ProductsPage = () => {
                         <span className="total-amount">{cartTotal} MAD</span>
                       </div>
                       <div className="cart-actions">
-                        <button className="checkout-button">
+                        <button className={getThemeClassName("checkout-button")}>
                           <ShoppingCart size={16} />
                           Passer la commande
                         </button>
@@ -278,7 +243,6 @@ const ProductsPage = () => {
           </div>
         </div>
       </header>
-
       <div className="main-content">
         <div className="breadcrumb">
           <Link to="/" className="breadcrumb-link">
@@ -287,7 +251,9 @@ const ProductsPage = () => {
           <span className="breadcrumb-separator">
             <ChevronRight size={14} />
           </span>
-          <span className="breadcrumb-current">OUAKKAHA MOHAMED</span>
+          <span className="breadcrumb-current">
+            {isAlafIssen ? "ALAF ISSEN" : "OUAKKAHA MOHAMED"}
+          </span>
         </div>
         <div className="content-wrapper">
           <div className="filters">
@@ -320,7 +286,7 @@ const ProductsPage = () => {
               <div className="cart-summary">
                 <div className="cart-header">
                   <div className="cart-header-left">
-                    <ShoppingCart className="cart-icon " size={18} />
+                    <ShoppingCart className="cart-icon" size={18} />
                     <h3 className="cart-title">Votre Panier</h3>
                   </div>
                   <button 
@@ -328,7 +294,7 @@ const ProductsPage = () => {
                     onClick={() => setShowCart(!showCart)}
                     aria-label="Masquer le panier"
                   >
-                    <X size={16}  />
+                    <X size={16} />
                   </button>
                 </div>
                 <div className="cart-items">
@@ -369,7 +335,7 @@ const ProductsPage = () => {
                   <span>Total</span>
                   <span>{cartTotal} MAD</span>
                 </div>
-                <button className="checkout-button">
+                <button className={getThemeClassName("checkout-button")}>
                   <ShoppingCart size={16} />
                   Passer la commande
                 </button>
@@ -378,7 +344,9 @@ const ProductsPage = () => {
           </div>
           <div className="products-grid-product">
             <div className="products-header">
-              <h1 className="products-title">Boutique OUAKKAHA MOHAMED</h1>
+              <h1 className="products-title">
+                {isAlafIssen ? "Boutique ALAF ISSEN" : "Boutique OUAKKAHA MOHAMED"}
+              </h1>
               <div className="products-count">
                 {filteredProducts.length} produits
               </div>
@@ -394,10 +362,12 @@ const ProductsPage = () => {
                     />
                     <div className="product-badges">
                       {product.isNew && (
-                        <span className="badge new-badge">Nouveau</span>
+                        <span className={`badge new-badge ${isAlafIssen ? 'alafissen-new-badge' : ''}`}>
+                          Nouveau
+                        </span>
                       )}
                       {product.discount > 0 && (
-                        <span className="badge discount-badge">
+                        <span className={`badge discount-badge ${isAlafIssen ? 'alafissen-discount-badge' : ''}`}>
                           -{product.discount}%
                         </span>
                       )}
@@ -418,7 +388,7 @@ const ProductsPage = () => {
                     </div>
                     <div className="product-overlay">
                       <button
-                        className="add-to-cart-button"
+                        className={getThemeClassName("add-to-cart-button")}
                         onClick={() => addToCart(product.id)}
                       >
                         <ShoppingCart className="cart-icon" color="white" size={16} />
@@ -437,7 +407,9 @@ const ProductsPage = () => {
                           {product.oldPrice} MAD
                         </span>
                       )}
-                      <p className="product-price">{product.price} MAD</p>
+                      <p className={getThemeClassName("product-price")}>
+                        {product.price} MAD
+                      </p>
                     </div>
                     <p className="product-description">
                       {product.description}
@@ -448,7 +420,7 @@ const ProductsPage = () => {
                     </div>
                     <div className="product-tags">
                       {product.tags.map((tag, index) => (
-                        <span key={index} className="tag">
+                        <span key={index} className={getThemeClassName("tag")}>
                           {tag}
                         </span>
                       ))}
