@@ -403,7 +403,18 @@ const ProductsPage = ({ products, type = false }) => {
                     <ShoppingCart size={16} />
                     Passer la commande
                   </button>
-                  <button className="clear-cart-button" onClick={clearCart}>
+                  <button className="clear-cart-button" onClick={clearCart}
+                    style={{
+                      padding: "10px",
+                      backgroundColor: "#ea3232",
+                      color: "white",
+                      borderRadius: "5px",
+                      fontWeight: "700",
+                      width:"100%",
+                      marginTop:"10px",
+                      height:"38px"
+                    }}
+                  >
                     Vider le panier
                   </button>
                 </div>

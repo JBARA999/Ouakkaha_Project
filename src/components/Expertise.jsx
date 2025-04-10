@@ -335,20 +335,23 @@ const Expertise = () => {
               <div>
                 <div>
                   <img
-                    src="imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif"
+                    src="imgs/man-feed.jpg"
                     alt="Oliveraie marocaine"
+                    style={{height:"16rem"}}
                   />
                 </div>
                 <div>
-                  <img src="imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif" />
+                  <img src="imgs/Chickens-eting.webp" />
                 </div>
               </div>
               <div>
                 <div>
-                  <img src="https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" />
+                  <img src="imgs/cow-eting.jpg" style={{
+                    height:"16rem"
+                  }} />
                 </div>
                 <div>
-                  <img src="imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif" />
+                  <img src="imgs/ram-feed.jpg" style={{height:"15rem"}}/>
                 </div>
               </div>
             </div>

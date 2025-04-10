@@ -1,4 +1,4 @@
-import { Facebook, Headset, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
+import { Facebook,Printer, Headset, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import React from "react";
 import "../styles/footer.css";
 import { useLocation } from "react-router-dom";
@@ -25,11 +25,11 @@ export default function Footer() {
               <span>+212 6 61 20 95 16</span>
             </li>
             <li className="contact-item">
-              <Headset className="contact-icon" />
+              <Printer className="contact-icon" />
               <span>+212 5 28 21 68 65</span>
             </li>
             <li className="contact-item">
-              <Headset className="contact-icon" />
+              <Printer className="contact-icon" />
               <span>+212 5 28 21 62 62</span>
             </li>
             <li className="contact-item">
@@ -55,11 +55,11 @@ export default function Footer() {
               <span>+212 6 61 20 95 16</span>
             </li>
             <li className="contact-item">
-              <Headset className="contact-icon" />
+              <Printer className="contact-icon" />
               <span>+212 5 28 21 68 65</span>
             </li>
             <li className="contact-item">
-              <Headset className="contact-icon" />
+              <Printer className="contact-icon" />
               <span>+212 5 28 21 62 62</span>
             </li>
             <li className="contact-item">
