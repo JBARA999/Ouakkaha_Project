@@ -6,7 +6,6 @@ import Expertise from "../components/Expertise";
 export default function Acceuil() {
   return (
     <main>
-      <HeroSection />
       <Expertise />
     </main>
   );

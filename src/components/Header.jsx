@@ -1,15 +1,19 @@
 import React from "react";
 import "../styles/Header.css";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 
 export default function Header() {
+  // console.log(window.location.href.);
+  const location = useLocation(); // React Hook
+const isAlafIssen = location.pathname.includes("alaf-issen");
   return (
     <header>
       <div className="container">
         <div className="header">
           <nav className="navbar">
             <div>
-              <img src="imgs/Logo.png" alt="" />
+              {isAlafIssen ?<img className="logo" src="imgs/logo-issen.png" /> : <img className="logo" src="imgs/Logo.png" alt="" />}
+              
             </div>
 
             <div className="lienks">

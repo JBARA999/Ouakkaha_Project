@@ -1,31 +1,62 @@
 import React from "react";
-import "../styles/hero.css";
 import { ArrowRight } from "lucide-react";
-export default function HeroSection() {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination, EffectFade } from "swiper/modules";
+
+// Import required Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+// Import our custom CSS
+import "../styles/hero.css";
+
+
+
+
+export default function HeroSection({imgs , children}) {
   return (
     <div className="hero container">
-      <div >
-        <h1 className="animate-fade">
-          Notre Metier Est De preparer <span>L'avenir</span>
-        </h1>
-        <p>
-          Nous sommes spécialisés dans la fourniture de solutions d’alimentation
-          de haute qualité pour les bovins, les ovins et les vaches laitières au
-          Maroc
-        </p>
-        <div className="links">
-          <button>Découvrir notre histoire Voir </button>
-          <button className="products">
-            Voir nos produits
-            <span>
-              <ArrowRight />
-            </span>
-          </button>
-        </div>
+      <div className="hero-content">
+      {children}
       </div>
 
       <div className="image">
-        <img src="imgs/background.webp" alt="" />
+        <Swiper
+          modules={[EffectFade, Autoplay, Navigation, Pagination]}
+          spaceBetween={50}
+          slidesPerView={1}
+          effect="fade"
+          loop={true}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{
+            clickable: true,
+            bulletClass: "swiper-bullet",
+            bulletActiveClass: "swiper-bullet-active",
+          }}
+          navigation={{
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+          }}
+          className="hero-swiper"
+        >
+          {imgs.map((img) => {
+            return (
+              <SwiperSlide>
+                <img
+                  className="background-image"
+                  src={`/imgs/${img}`}
+                  alt="Farm animals"
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* Navigation buttons (optional) */}
+        <div className="swiper-button-prev"></div>
+        <div className="swiper-button-next"></div>
       </div>
     </div>
   );

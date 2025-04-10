@@ -1,10 +1,17 @@
 import { Facebook, Headset, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import React from "react";
 import "../styles/footer.css";
+import { useLocation } from "react-router-dom";
 
 export default function Footer() {
+
+
+  const location = useLocation(); // React Hook
+  const isAlafIssen = location.pathname.includes("alaf-issen");
+
+
   return (
-    <footer className="site-footer">
+    <footer className={`${isAlafIssen ? "site-footer-green" : "site-footer"}`}>
       <div className="footer-content">
         <div className="footer-column contact-column">
           <h3 className="footer-title">OUAKKAHA MOHAMED</h3>
@@ -69,17 +76,17 @@ export default function Footer() {
         <div className="footer-column info-column">
           <div className="social-section">
             <h3 className="footer-title">Suivez-Nous</h3>
-            <div className="social-links">
-              <a href="https://www.facebook.com/p/Groupe-Ouakkaha-100071516293778/?locale=fr_FR" className="social-link" aria-label="Facebook">
+            <div className={` social-links `}>
+              <a href="https://www.facebook.com/p/Groupe-Ouakkaha-100071516293778/?locale=fr_FR" className={`${isAlafIssen ? "social-link-green": "social-link"}`} aria-label="Facebook">
                 <Facebook className="social-icon" />
               </a>
-              <a href="#" className="social-link" aria-label="Twitter">
+              <a href="https://x.com/ouakkahag" className={`${isAlafIssen ? "social-link-green": "social-link"}`} aria-label="Twitter">
                 <Twitter className="social-icon" />
               </a>
-              <a href="https://www.instagram.com/groupe_ouakkaha/" className="social-link" aria-label="Instagram">
+              <a href="https://www.instagram.com/groupe_ouakkaha/" className={`${isAlafIssen ? "social-link-green": "social-link"}`} aria-label="Instagram">
                 <Instagram className="social-icon" />
               </a>
-              <a href="https://www.youtube.com/@groupeouakkaha2169" className="social-link" aria-label="Youtube">
+              <a href="https://www.youtube.com/@groupeouakkaha2169" className={`${isAlafIssen ? "social-link-green": "social-link"}`} aria-label="Youtube">
                 <Youtube className="social-icon" />
               </a>
             </div>

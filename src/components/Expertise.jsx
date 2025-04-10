@@ -3,8 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import "../styles/expertise.css";
 import Title from "../components/Title";
 import { Link } from "react-router-dom";
+import HeroSection from "./HeroSection";
+import QualitySection from "./QualitySection"
 
-const features = [
+
+
+const featuresOukkaha = [
   "Techniques d'extraction traditionnelles",
   "Production 100% naturelle et biologique",
   "Contrôle qualité rigoureux",
@@ -12,12 +16,26 @@ const features = [
   "Normes internationales respectées",
   "Développement durable et écologique",
 ];
+const featuresAlafIssen = [
+  "Formules équilibrées et adaptées aux besoins de chaque espèce  ",
+  "Respect des normes sanitaires et qualité constante",
+  "Matières premières rigoureusement sélectionnées",
+  "Suivi technique personnalisé pour les éleveurs ",
+  "Innovation et amélioration continue",
+  "Distribution fiable et réactive à l’échelle nationale ",
+];
 
-const stats = [
-  { number: 40, suffix: "+", description: "années d'expérience" },
-  { number: 20, suffix: "k+", description: "hectares d'oliveraies" },
-  { number: 50, suffix: "+", description: "pays d'exportation" },
+const statsOukaha = [
+  { number: 40, suffix: "+", description: "Années d'expérience" },
+  { number: 500, suffix: "+", description: "Employés" },
+  { number: 10, suffix: "+", description: "pays d'exportation" },
   { number: 100, suffix: "%", description: "satisfaction clients" },
+];
+const statsAlafIssen = [
+  { number: 40, suffix: "+", description: "années d'expérience" },
+  { number: 500, suffix: "+", description: "lignesde fabrication automitisées" },
+  { number: 3343, suffix: "+", description: "Capacité de production" },
+  { number: 553, suffix: "+", description: "Capacité de stockage des MP" },
 ];
 
 const products = [
@@ -64,7 +82,18 @@ const products = [
   },
 ];
 
-const StatItem = ({ number, suffix = "", description, delay = 0 }) => {
+const Oukkahaimgs = [
+  "background.webp",
+  "checken-white.png",
+  "chiicks.jpg",
+  "chicks.jpg",
+  "eggss.jpg",
+  "camionOuakkaha.jpg",
+];
+
+const AlafIssenImgs = [""];
+
+const StatItem = ({type , number, suffix = "", description, delay = 0 }) => {
   const [count, setCount] = useState(0);
   const counterRef = useRef(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -110,8 +139,8 @@ const StatItem = ({ number, suffix = "", description, delay = 0 }) => {
 
   return (
     <div className="stat-item">
-      <div className="stat-number">
-        <span ref={counterRef}>{count}</span>
+      <div className={`${type == "issen" ? "stat-number-issen" : "stat-number"}`} >
+        <span ref={counterRef} >{count}</span>
         <span>{suffix}</span>
       </div>
       <p className="stat-description">{description}</p>
@@ -120,28 +149,39 @@ const StatItem = ({ number, suffix = "", description, delay = 0 }) => {
 };
 
 const Expertise = () => {
-  const scrollContainerRef = useRef(null); // Properly typed and initialized
 
-  const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const { current } = scrollContainerRef;
-      const scrollAmount = 320; // Approximate card width + margin
 
-      if (direction === "left") {
-        current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      } else {
-        current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      }
-    }
-  };
 
   return (
     <>
+      <HeroSection imgs={Oukkahaimgs}>
+        <h1 className="animate-fade">
+          Notre Metier Est De preparer <span>L'avenir</span>
+        </h1>
+        <p>
+          Nous sommes spécialisés dans la fourniture de solutions d'alimentation
+          de haute qualité pour les bovins, les ovins et les vaches laitières au
+          Maroc
+        </p>
+        <div className="links">
+          <button className="discover-btn">Découvrir notre histoire</button>
+          <button className="products-btn">
+            Voir nos produits
+            <span className="icon">
+              <ArrowRight />
+            </span>
+          </button>
+        </div>
+      </HeroSection>
+
       <section>
         <div className="expertise-container">
           <div className="container">
             <div className="left">
-              <Title title="Notre Expertise" />
+              <Title
+                title="Notre Expertise for Ouakkaha Mohammed"
+                type={"oukkaha"}
+              />
 
               <h2>Groupe OUAKKAHA, l'excellence marocaine depuis 1980</h2>
               <p>
@@ -153,9 +193,124 @@ const Expertise = () => {
               </p>
 
               <ul className="list">
-                {features.map((feature, index) => (
+                {featuresOukkaha.map((feature, index) => (
                   <li key={index}>
                     <span>
+                      <Check className="h-3 w-3" />
+                    </span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="right">
+              <div>
+                <div>
+                  <img
+                    src="imgs/brown-checken.avif"
+                    alt="Oliveraie marocaine"
+                  />
+                </div>
+                <div
+                  style={{
+                    height: "250px",
+                    backgroundColor: "white",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <img src="imgs/baby-chick.webp" />
+                </div>
+              </div>
+              <div>
+                <div>
+                  <img src="imgs/white-checken.avif" />
+                  {/* <img src="" /> */}
+                </div>
+
+                <div
+                  style={{
+                    height: "250px",
+                    backgroundColor: "white",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <img src="imgs/eggs-white-bg.avif" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section className="stats-section">
+        <div className="stats-container">
+          <h2 className="stats-title">Groupe <span style={{color:"#f55b09"}}>OUAKKAHA </span> en chiffres</h2>
+          <div className="stats-grid">
+            {statsOukaha.map((stat, index) => (
+              <StatItem
+                key={index}
+                number={stat.number}
+                suffix={stat.suffix}
+                description={stat.description}
+                delay={index * 200}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      <HeroSection imgs={AlafIssenImgs}>
+        <h1 className="animate-fade">
+          <span style={{color:"#26b82d"}}>Alaf Issen : </span>
+          L’alimentation animale au service de la performance{" "}
+        </h1>
+        <p>
+          Nous sommes spécialisés dans la fourniture de solutions d'alimentation
+          de haute qualité pour les bovins, les ovins et les vaches laitières au
+          Maroc
+        </p>
+        <div className="links">
+          <button className="discover-btn" style={{backgroundColor:"#26b82d"}}>Découvrir notre histoire</button>
+          <button className="products-btn  alf-button" >
+            Voir nos produits
+            <span className="icon">
+              <ArrowRight />
+            </span>
+          </button>
+        </div>
+      </HeroSection>
+
+
+      <section>
+        <div className="expertise-container">
+          <div className="container">
+            <div className="left">
+              <Title
+                title="Notre Expertise for Alaf Issen"
+                type={"alafIssen"}
+              />
+
+              <h2>Alaf Issen, la référence en alimentation animale au Maroc</h2>
+              <p>
+                Depuis sa création en 2007, Alaf Issen s'est imposée comme un
+                acteur majeur dans le domaine de l'alimentation du bétail au
+                Maroc. Située à Zaouiat Issen, la société est spécialisée dans
+                la production et la distribution de céréales, aliments composés
+                et compléments nutritionnels pour bétail, volailles et ovins.
+                Notre engagement est d’offrir une nutrition animale de qualité,
+                respectueuse de la santé animale et des normes internationales.
+              </p>
+
+              <ul className="list">
+                {featuresAlafIssen.map((feature, index) => (
+                  <li key={index}>
+                    <span className="alafIssen-link">
                       <Check className="h-3 w-3" />
                     </span>
                     <span>{feature}</span>
@@ -188,12 +343,14 @@ const Expertise = () => {
           </div>
         </div>
       </section>
+
       <section className="stats-section">
         <div className="stats-container">
-          <h2 className="stats-title">Groupe OUAKKAHA en chiffres</h2>
+          <h2 className="stats-title">Groupe <span style={{color:"#26b82d"}}>ALAFISSEN </span>en chiffres</h2>
           <div className="stats-grid">
-            {stats.map((stat, index) => (
+            {statsAlafIssen.map((stat, index) => (
               <StatItem
+              type="issen"
                 key={index}
                 number={stat.number}
                 suffix={stat.suffix}
@@ -205,70 +362,94 @@ const Expertise = () => {
         </div>
       </section>
 
-      <section className="products-section">
-        <div className="products-container">
-          <div className="products-header">
-            <Title title={"Nos Produits"} />
-            <h2 className="products-title" style={{ marginBottom: "20px" }}>
-              Découvrez notre gamme de produits d'excellence
-            </h2>
-            <div className="products-navigation">
-              <button
-                onClick={() => scroll("left")}
-                className="navigation-button"
-                aria-label="Produits précédents"
-              >
-                <ArrowLeft className="icon" />
-              </button>
-              <button
-                onClick={() => scroll("right")}
-                className="navigation-button"
-                aria-label="Produits suivants"
-              >
-                <ArrowRight className="icon" />
-              </button>
-            </div>
-          </div>
 
-          {/* Scrollable Products Grid */}
-          <div
-            ref={scrollContainerRef} // Assign the ref here
-            className="products-grid"
-          >
-            {products.map((product) => (
-              <div key={product.id} className="product-card">
-                <div className="product-image-container">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="product-image"
-                  />
-                  <span className="product-category">{product.category}</span>
-                </div>
-                <div className="product-details">
-                  <h3 className="product-name">{product.name}</h3>
-                  <p className="product-description">{product.description}</p>
-                  <div className="product-footer">
-                    <span className="product-price">{product.price}</span>
-                    <Link to={product.url} className="product-link">
-                      Voir plus
-                      <ExternalLink className="link-icon" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+     {/* <ProductsSection/> */}
 
-          <div className="products-cta">
-            <Link to="/ouakkaha" className="cta-button">
-              Découvrir tous nos produits
-            </Link>
-          </div>
-        </div>
-      </section>
+     <QualitySection />
     </>
   );
 };
 
 export default Expertise;
+
+
+const ProductsSection = () => {
+  const scrollContainerRef = useRef(null); // Properly typed and initialized
+
+  const scroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const { current } = scrollContainerRef;
+      const scrollAmount = 320; // Approximate card width + margin
+
+      if (direction === "left") {
+        current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      } else {
+        current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    }
+  };
+
+
+  return  <section className="products-section">
+  <div className="products-container">
+    <div className="products-header">
+      <Title title={"Nos Produits"} type={"oukkaha"} />
+      <h2 className="products-title" style={{ marginBottom: "20px" }}>
+        Découvrez notre gamme de produits d'excellence
+      </h2>
+      <div className="products-navigation">
+        <button
+          onClick={() => scroll("left")}
+          className="navigation-button"
+          aria-label="Produits précédents"
+        >
+          <ArrowLeft className="icon" />
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          className="navigation-button"
+          aria-label="Produits suivants"
+        >
+          <ArrowRight className="icon" />
+        </button>
+      </div>
+    </div>
+
+    {/* Scrollable Products Grid */}
+    <div
+      ref={scrollContainerRef} // Assign the ref here
+      className="products-grid"
+    >
+      {products.map((product) => (
+        <div key={product.id} className="product-card">
+          <div className="product-image-container">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="product-image"
+            />
+            <span className="product-category">{product.category}</span>
+          </div>
+          <div className="product-details">
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-description">{product.description}</p>
+            <div className="product-footer">
+              <span className="product-price">{product.price}</span>
+              <Link to={product.url} className="product-link">
+                Voir plus
+                <ExternalLink className="link-icon" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="products-cta">
+      <Link to="/ouakkaha" className="cta-button">
+        Découvrir tous nos produits
+      </Link>
+    </div>
+  </div>
+</section>
+}

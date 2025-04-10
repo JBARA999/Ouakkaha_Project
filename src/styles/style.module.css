@@ -1,0 +1,84 @@
+/* pagination.css */
+
+/* HeroSection.module.css */
+.HeroSectionPagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 2.5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    z-index: 50;
+}
+
+.HeroSectionBullet {
+    width: 1rem;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 500ms;
+    display: inline-block;
+    margin: 0 0.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.HeroSectionBullet::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: white;
+    transition: all 500ms ease-out;
+}
+
+.HeroSectionBullet:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.HeroSectionBulletActive {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 2.5rem;
+}
+
+.HeroSectionBulletActive::before {
+    width: 100%;
+}
+
+/* FeedBack Pagination */
+/* Feedback Pagination Styles */
+
+
+/* FeedbackSlider.module.css */
+.paginationContainer {
+    position: absolute;
+    bottom: -1.875rem !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(190, 188, 189, 0.30);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bulletActive {
+    background-color: #3C4242;
+}
+
+.bullet:hover {
+    opacity: 0.8;
+}

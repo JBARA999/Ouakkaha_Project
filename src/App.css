@@ -29,6 +29,8 @@ textarea {
   padding-inline: 0.75rem;
 }
 
+
+
 .animate-fade {
   animation: fade-app 1s ease forwards;
 }

@@ -5,6 +5,13 @@
     padding: 4rem 0 2rem;
     font-family: 'Inter', Arial, sans-serif;
   }
+
+  .site-footer-green{
+    background-color: #26b82d;
+    color: white;
+    padding: 4rem 0 2rem;
+    font-family: 'Inter', Arial, sans-serif;
+  }
   
   .footer-content {
     display: flex;
@@ -80,12 +87,12 @@
     margin-bottom: 2.5rem;
   }
   
-  .social-links {
+  .social-links , .social-link-green{
     display: flex;
     gap: 1.25rem;
   }
   
-  .social-link {
+  .social-link , .social-link-green {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,6 +113,14 @@
     height: 20px;
     color: white;
     transition: color 0.3s ease;
+  }
+
+  .social-link-green:hover {
+    background-color: white;
+    transform: translateY(-3px);
+  }
+  .social-link-green:hover .social-icon{
+    color: #26b82d;
   }
   
   .social-link:hover .social-icon {

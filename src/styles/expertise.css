@@ -9,7 +9,15 @@
     & span:first-child {
       color: #f55b09;
     }
+    .alafIssen-link {
+      color: #26b82d !important;
+    }
   }
+}
+
+.alf-button:hover {
+  color: #17991d !important;
+  border: 1.6px solid #11b719 !important;
 }
 
 .expertise-container {
@@ -34,6 +42,8 @@
       line-height: 1.6rem;
       margin-bottom: 1.5rem;
     }
+    ul {
+    }
   }
   .right {
     flex: 1;
@@ -48,8 +58,9 @@
 
       img {
         object-fit: cover;
+        height: auto;
+        max-width: 180px;
         border-radius: 1rem;
-        height: 100%;
       }
     }
     div:last-child > div {
@@ -57,9 +68,10 @@
       box-shadow: 1px 1px 25px -11px rgba(0, 0, 0, 0.5);
       margin-bottom: 1rem;
       img {
-        border-radius: 1rem;
-        height: 100%;
         object-fit: cover;
+        height: auto;
+        max-width: 200px;
+        border-radius: 1rem;
       }
     }
   }
@@ -78,6 +90,13 @@
 
 .stat-number {
   color: #f55b09;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+}
+
+.stat-number-issen {
+  color: #26b82d;
   font-weight: 600;
   font-size: 1.4rem;
   margin-bottom: 0.3rem;
