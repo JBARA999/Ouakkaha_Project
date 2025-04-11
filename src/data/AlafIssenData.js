@@ -1,12 +1,14 @@
+
+
 export  const AlafIssenProducts = [{
     id: 1,
-    name: "Poulet Fermier Marron – Élevé en Plein Air",
-    category: "Volaille",
+    name: "Aliment pour Vaches Premium",
+    category: "Élevage Bovin",
     description:
-      "Un poulet fermier de couleur marron, élevé en plein air avec une alimentation naturelle pour une chair tendre et savoureuse.",
-    image: "../../imgs/brown-hen-isolated_146346-1501.avif",
-    price: 125,
-    oldPrice: 150,
+      "Aliment complet naturel, riche en protéines et vitamines, pour améliorer la production de lait et favoriser une croissance saine des vaches.",
+    image: "imgs/coww-feed.webp",
+    price: 60,
+    oldPrice: 70,
     rating: 4.9,
     tags: ["fermier", "plein air", "naturel"],
     url: "/poulet-fermier-marron",
@@ -16,13 +18,14 @@ export  const AlafIssenProducts = [{
   },
   {
     id: 2,
-    name: "Poulet Blanc Bio – Élevé en Liberté",
-    category: "poulet blanc",
+    name: "Aliment pour Poussins Premium",
+    category: "Aliment pour Poulet",
     description:
-      "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
+      "Aliment complet, riche en protéines et vitamines, favorisant une croissance saine et rapide des poussins.",
     image:
-      "../../imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
-    price: 250,
+      "imgs/flake-feed.jpeg",
+    price: 25,
+    oldPrice: 40,
     rating: 5.0,
     tags: ["bio", "élevé en liberté", "fermier"],
     url: "/poulet-blanc-bio",
@@ -32,14 +35,14 @@ export  const AlafIssenProducts = [{
   },
   {
     id: 3,
-    name: "Poulet Blanc Bio – Élevé en Liberté",
-    category: "poulet blanc",
+    name: "Aliment pour Poulet Premium",
+    category: "Aliment pour Poulet",
     description:
-      "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
+      "Aliment complet, riche en protéines et vitamines pour une croissance rapide et une bonne production, qu’il s’agisse de viande ou d'œufs.",
     image:
-      "../../imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
-    price: 250,
-    rating: 5.0,
+      "imgs/feed-poulet.jpg",
+    price: 45,
+    rating: 4.9,
     tags: ["bio", "élevé en liberté", "fermier"],
     url: "/poulet-blanc-bio",
     discount: 10,
@@ -48,15 +51,15 @@ export  const AlafIssenProducts = [{
   },
   {
     id: 4,
-    name: "Poulet Fermier Clair – Alimentation Naturelle",
-    category: "Volaille",
+    name: "Aliment pour Moutons Premium",
+    category: "Élevage Bétail",
     description:
-      "Un poulet fermier de couleur claire, nourri avec des aliments naturels pour une qualité supérieure.",
+      "Aliment complet, riche en protéines et vitamines, favorisant une croissance saine, une bonne reproduction et une prise de poids optimale.",
     image:
-      "../../imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif",
-    price: 80,
-    oldPrice: 95,
-    rating: 4.6,
+      "imgs/sheep-feed.jpg",
+    price: 55,
+    oldPrice: 65,
+    rating: 4.8,
     tags: ["fermier", "naturel", "qualité supérieure"],
     url: "/poulet-fermier-clair",
     minQuantity: 500, // Added minimum quantity
@@ -64,18 +67,38 @@ export  const AlafIssenProducts = [{
 
   },
   {
-    id: 34,
-    name: "Trio de Poussins Bio – Élevage Naturel",
-    category: "poussins",
+    id: 5,
+    name: "Aliment pour Lapins Premium",
+    category: "Alimentation pour Lapins",
     description:
-      "Trois adorables poussins élevés sans OGM, parfaits pour un élevage respectueux de l'environnement.",
+      "Aliment complet, riche en fibres, protéines et vitamines pour une croissance saine, une bonne digestion et une meilleure production de viande et de fourrure.",
     image:
-      "../../imgs/three-small-chickens-isolated-white-background_488220-8004.avif",
-    price: 95,
-    rating: 4.7,
-    tags: ["poussins", "biologique", "sans OGM"],
+      "imgs/rabbet-feed.jpg",
+    price: 40,
+    oldPrice: 55,
+    rating: 5.0,
+    tags: ["lapins", "biologique", "sans OGM", "alimentation saine"],
     url: "/trio-poussins-bio",
     isNew: true,
+    minQuantity: 500, // Added minimum quantity
+    addWith:50,
+
+  },
+  {
+    id: 6,
+    name: "Aliment pour Chèvres Premium",
+    category: "Élevage Bétail",
+    description:
+      "Aliment complet pour chèvres, riche en protéines et vitamines, favorisant une croissance saine et améliorant la production de lait et de viande. Idéal pour maintenir la santé des chèvres.",
+    image:
+      "imgs/goat-feed.webp",
+    price: 53.7,
+    oldPrice: 60,
+    rating: 4.9,
+    tags: ["chèvres", "biologique", "sans OGM", "alimentation saine"],
+    url: "/trio-poussins-bio",
+    isNew: false,
+    discount: 15,
     minQuantity: 500, // Added minimum quantity
     addWith:50,
 

@@ -7,9 +7,9 @@ export const Oukkahaproducts = [
       category: "Volaille",
       description:
         "Un poulet fermier de couleur marron, élevé en plein air avec une alimentation naturelle pour une chair tendre et savoureuse.",
-      image: "/imgs/brown.avif",
-      price: 125,
-      oldPrice: 150,
+      image: "/imgs/brown-checken.avif",
+      price: 60,
+      oldPrice: 100,
       rating: 4.9,
       tags: ["fermier", "plein air", "naturel"],
       url: "/poulet-fermier-marron",
@@ -25,8 +25,8 @@ export const Oukkahaproducts = [
       description:
         "Un poulet blanc de haute qualité, élevé en liberté, idéal pour une alimentation saine et équilibrée.",
       image:
-        "/imgs/chicken-with-white-tail-stands-field_558469-4135.jpg",
-      price: 25,
+        "/imgs/checken-white.png",
+      price: 55,
       rating: 5.0,
       tags: ["bio", "élevé en liberté", "fermier"],
       url: "/poulet-blanc-bio",
@@ -42,12 +42,13 @@ export const Oukkahaproducts = [
       description:
         "Un poulet fermier de couleur claire, nourri avec des aliments naturels pour une qualité supérieure.",
       image:
-        "/imgs/brown-hen-isolated-white-studio-shot_136670-2671.avif",
+        "imgs/cheken-noir.webp",
       price: 80,
       oldPrice: 95,
       rating: 4.6,
       tags: ["fermier", "naturel", "qualité supérieure"],
       url: "/poulet-fermier-clair",
+      discount: 20,
       minQuantity: 500, // Added minimum quantity
       addWith:50,
 
@@ -60,10 +61,46 @@ export const Oukkahaproducts = [
         "Trois adorables poussins élevés sans OGM, parfaits pour un élevage respectueux de l'environnement.",
       image:
         "/imgs/three-small-chickens-isolated-white-background_488220-8004.avif",
-      price: 95,
+      price: 25,
       rating: 4.7,
       tags: ["poussins", "biologique", "sans OGM"],
       url: "/trio-poussins-bio",
+      isNew: true,
+      minQuantity: 500, // Added minimum quantity
+      addWith:50,
+
+    },
+    {
+      id: 5,
+      name: "Œuf naturel de qualité",
+      category: "œufs",
+      description:
+        "Des œufs frais et 100% naturels, issus de poules nourries de manière saine et élevées en plein air. Un goût authentique pour vos repas quotidiens.",
+      image:
+        "/imgs/œufs.jpg",
+      price: 0.95,
+      oldPrice: 1.3,
+      rating: 4.7,
+      tags: ["poussins", "biologique", "sans OGM"],
+      url: "/Œuf naturel de qualité",
+      isNew: true,
+      minQuantity: 500, // Added minimum quantity
+      addWith:50,
+
+    },
+    {
+      id: 6,
+      name: "Œuf Blanc naturel de qualité",
+      category: "œufs",
+      description:
+        "Des œufs frais et 100% naturels, issus de poules nourries de manière saine et élevées en plein air. Un goût authentique pour vos repas quotidiens.",
+      image:
+        "/imgs/oeufs-blanc.webp",
+      price: 0.95,
+      oldPrice: 1.3,
+      rating: 4.7,
+      tags: ["poussins", "biologique", "sans OGM"],
+      url: "/Œuf naturel de qualité",
       isNew: true,
       minQuantity: 500, // Added minimum quantity
       addWith:50,
